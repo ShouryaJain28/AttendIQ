@@ -1,4 +1,5 @@
 
+import os
 import streamlit as st
 import segno
 import io
@@ -6,11 +7,17 @@ import io
 
 @st.dialog("Share Class Link")
 def share_subject_dialog(subject_name, subject_code):
-    app_domain = "https://attendiq-platform.streamlit.app"
+    # Use the deployed URL when configured; otherwise use localhost.
+    app_domain = os.getenv(
+        "ATTENDIQ_APP_URL",
+        "http://localhost:8501"
+    ).rstrip("/")
+
     join_url = f"{app_domain}/?join-code={subject_code}"
 
     st.header(f"Join {subject_name}")
 
+    # Generate QR code
     qr = segno.make(join_url, error="m")
 
     out = io.BytesIO()
