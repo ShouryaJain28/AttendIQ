@@ -1,0 +1,21 @@
+# Environment variables and secrets
+.streamlit/secrets.toml
+.env
+.env.*
+!.env.example
+
+
+# VS Code settings
+.vscode/
+
+# Python virtual environment
+venv/
+.venv/
+
+# Python cache files
+*.pyc
+__pycache__/
+
+# Operating system files
+.DS_Store
+Thumbs.db
